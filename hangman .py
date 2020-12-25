@@ -188,6 +188,7 @@ def error_input(warn, attempt, letters_guessed):
     returns: the number of attempts and warnings left by the player
         and provides a condition in certain cases.
     """
+
     if warn >= 1:
         warn -= 1
         print('Oops! That is not a valid letter. You have', warn, ' warnings left:',
@@ -217,7 +218,8 @@ def hangman(secret_word, hints=False):
             show_possible_matches(get_guessed_word(secret_word, letters_guessed))
             continue
         # checks if the user has entered the data correctly
-        elif not letter.isalpha() or len(letter) != 1:
+        elif not letter.isalpha() or len(letter) != 1 or not letter.isascii():
+
             warn, attempt = error_input(warn, attempt, letters_guessed)
         # checks if the user has guessed the letter
         else:
